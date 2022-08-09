@@ -22,7 +22,7 @@ class ProductPageLocators():
     PRODUCT_PRICE = (By.CSS_SELECTOR, "div.col-sm-6.product_main > p.price_color")
     NOTIFICATION_ABOUT_NAME = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div.alertinner > strong")
     NOTIFICATION_ABOUT_PRICE = (By.CSS_SELECTOR, "#messages > div:nth-child(3) > div.alertinner > p > strong")
-
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div.alertinner")
 
 
 

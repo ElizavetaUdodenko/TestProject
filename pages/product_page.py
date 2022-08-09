@@ -25,15 +25,20 @@ class ProductPage(BasePage):
         product_name = self.get_product_name()
         notification = self.browser.find_element(*ProductPageLocators.NOTIFICATION_ABOUT_NAME)
         notification_text = notification.text
-        assert product_name in notification_text, "Product name is missing in the notification"
+        assert product_name == notification_text, "Product name is missing in the notification"
 
     def should_be_notification_about_price(self):
         product_price = self.get_product_price()
         notification = self.browser.find_element(*ProductPageLocators.NOTIFICATION_ABOUT_PRICE)
         notification_text = notification.text
-        assert product_price in notification_text, "Product price is missing in the notification"
+        assert product_price == notification_text, "Product price is missing in the notification"
 
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "SUCCESS message is presented but should not be"
 
+
+    def success_message_should_disappear_after_adding_product_to_basket(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "SUCCESS message does not disappear after the timeout is over"
 
 
