@@ -1,7 +1,5 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class ProductPage(BasePage):
@@ -33,10 +31,8 @@ class ProductPage(BasePage):
         notification_text = notification.text
         assert product_price == notification_text, "Product price is missing in the notification"
 
-
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), "SUCCESS message is presented but should not be"
-
 
     def success_message_should_disappear_after_adding_product_to_basket(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "SUCCESS message does not disappear after the timeout is over"

@@ -10,8 +10,11 @@ class LoginPage(BasePage):
 
     def should_be_login_url(self):
         # реализуйте проверку на корректный url адрес
-        assert self.browser.current_url == "http://selenium1py.pythonanywhere.com/en-gb/accounts/login/",\
-            "Login URL is wrong"
+        login_url = self.browser.current_url
+        assert login_url == f"http://selenium1py.pythonanywhere.com/en-gb/accounts/login/",\
+            f"Login URL is wrong." \
+            f"\n'http://selenium1py.pythonanywhere.com/en-gb/accounts/login/' should be." \
+            f"\n{login_url} is set"
 
     def should_be_login_form(self):
         # реализуйте проверку, что есть форма логина
@@ -25,3 +28,15 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.REGISTER_EMAIL), "E-mail field in the register form is missing"
         assert self.is_element_present(*LoginPageLocators.REGISTER_PWD), "The password field in the register form is missing"
         assert self.is_element_present(*LoginPageLocators.REGISTER_CONFIRM_PWD), "The field to confirm password in the register form is missing"
+
+    def register_new_user(self, email, pwd):
+        email_input = self.browser.find_element(*LoginPageLocators.REGISTER_EMAIL)
+        email_input.send_keys(email)
+        pwd_input = self.browser.find_element(*LoginPageLocators.REGISTER_PWD)
+        pwd_input.send_keys(pwd)
+        confirm_pwd_input = self.browser.find_element(*LoginPageLocators.REGISTER_CONFIRM_PWD)
+        confirm_pwd_input.send_keys(pwd)
+        register_btn = self.browser.find_element(*LoginPageLocators.REGISTER_BTN)
+        register_btn.click()
+
+
